@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carte avec adresse de tournoi</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+   <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+        #map {
+            height: 80vh;
+            width: 80vw;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <h1>Carte du tournoi</h1>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Initialisation de la carte
+        const map = L.map('map').setView([46.603354, 1.888334], 6);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+
+        // Importe le mock depuis un fichier séparé
+        // ...existing code...
+        const script = document.createElement('script');
+        script.src = 'mockTournois.js';
+        script.onload = function() {
+            if (typeof tournois !== 'undefined') {
+                tournois.forEach(tournoi => {
+                    L.marker([tournoi.lat, tournoi.lon]).addTo(map)
+                        .bindPopup(`<b>${tournoi.nom}</b><br><a href='${tournoi.url}' target='_blank'>Lien du tournoi</a>`);
+                });
+            }
+        };
+        document.body.appendChild(script);
+    </script>
+</body>
+</html>
