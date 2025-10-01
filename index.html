@@ -113,11 +113,15 @@ tr:hover {
     display: block;
 }
 
-.best-score {
-    font-weight: bold;
-    color: #4CAF50;
+.clickable {
+    cursor: pointer;
+    text-decoration: underline;
+    color: rgb(0, 0, 0);
 }
 
+.best-score.clickable {
+    color: #4CAF50; /* Vert pour les best-score */
+}
 .qualified {
     background-color: #90EE90 !important;
 }
@@ -439,7 +443,9 @@ tr:hover {
                             const tooltipContent = joueur.listeClassements
                                 .map((c, index) => {
                                     const isBest = index < MaxTournamentCount;
-                                    return `<div class="${isBest ? 'best-score' : ''}">${isBest ? '► ' : '  '}${c.nomTournoi}: ${c.classement}e (${c.points} pts)</div>`;
+                                    return `<div class="${isBest ? 'best-score' : ''} clickable" onclick="window.open('${c.urlTournoi}', '_blank')">
+    ${isBest ? '► ' : '  '}${c.nomTournoi}: ${c.classement}e (${c.points} pts)
+</div>`;
                                 })
                                 .join('');
                             
