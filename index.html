@@ -1,82 +1,133 @@
 <!DOCTYPE html>
 <html lang="fr">
        <style>
-        body {
-            margin: 0;
-            padding: 20px;
-            background-color: #f0f0f0;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-        }
-        #map {
-            height: 60vh;
-            width: 80vw;
-            border: 1px solid #ccc;
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
-            margin-bottom: 20px;
-        }
-        #classement {
-            max-height: 60vh;
-            overflow-y: auto;
-            width: 80vw;
-            background-color: white;
-            border-radius: 4px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: white;
-        }
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            position: sticky;
-            top: 0;
-            background-color: #4CAF50;
-            color: white;
-            z-index: 1;
-        }
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        tr:hover {
-            background-color: #ddd;
-        }
-        .points-cell {
-            position: relative;
-            cursor: help;
-        }
-        .tooltip {
-            display: none;
-            position: absolute;
-            background: white;
-            border: 1px solid #ccc;
-            padding: 10px;
-            border-radius: 4px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            z-index: 1000;
-            white-space: nowrap;
-            right: 0;
-        }
-        .points-cell:hover .tooltip {
-            display: block;
-        }
-        .best-score {
-            font-weight: bold;
-            color: #4CAF50;
-        }
-        .qualified {
-            background-color: #90EE90 !important;
-        }
-        .qualified:hover {
-            background-color: #78c278 !important;
-        }
- .region-color {
+/* Reset et base */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    min-height: 100vh;
+}
+
+/* En-tête */
+h1 {
+    text-align: center;
+    margin: 10px 0;
+    font-size: 1.5rem;
+}
+
+/* Conteneur principal */
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Bouton pour afficher/masquer la carte (mobile) */
+.map-toggle {
+    display: none;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin: 10px auto;
+    width: 80%;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+/* Carte */
+#map {
+    height: 50vh;
+    width: 100%;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    margin-bottom: 10px;
+}
+
+/* Classement */
+#classement {
+    width: 100%;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    overflow-x: auto;
+}
+
+/* Tableau */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    font-size: 0.9rem;
+}
+
+th, td {
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    position: sticky;
+    top: 0;
+    background-color: #4CAF50;
+    color: white;
+    z-index: 1;
+}
+
+/* Lignes du tableau */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+/* Cellules spécifiques */
+.points-cell {
+    position: relative;
+    cursor: help;
+}
+
+.tooltip {
+    display: none;
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+    white-space: nowrap;
+    right: 0;
+    font-size: 0.8rem;
+}
+
+.points-cell:hover .tooltip {
+    display: block;
+}
+
+.best-score {
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.qualified {
+    background-color: #90EE90 !important;
+}
+
+.qualified:hover {
+    background-color: #78c278 !important;
+}
+
+/* Régions */
+.region-color {
     display: inline-block;
     width: 12px;
     height: 12px;
@@ -93,6 +144,40 @@
 .occitanie-color { background-color: #dd0000; }
 .auvergne-color { background-color: #f5bf4c; }
 .alpes-color { background-color: #9d9c6c; }
+
+/* Responsive : Mobile */
+/* Bouton pour afficher/masquer la carte */
+.map-toggle {
+    display: block; /* Toujours visible */
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin: 10px auto;
+    width: 80%;
+    max-width: 300px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+/* Carte visible par défaut sur PC, masquée sur mobile */
+#map {
+    height: 50vh;
+    width: 100%;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    margin-bottom: 10px;
+}
+
+/* Responsive : Mobile */
+@media (max-width: 768px) {
+    #map {
+        display: none; /* Masquée par défaut sur mobile */
+    }
+}
+
+
     </style>
 <head>
     <meta charset="UTF-8">
@@ -103,6 +188,8 @@
 </head>
 <body>
     <h1>Carte du tournoi</h1>
+<div class="container">
+    <button class="map-toggle" onclick="toggleMap()">Afficher/Masquer la carte</button>
     <div id="map"></div>
     <div id="classement">
         <table id="tableauJoueurs">
@@ -117,10 +204,26 @@
             </thead>
             <tbody></tbody>
         </table>
+        </div>
+      
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
+        function toggleMap() {
+    const mapElement = document.getElementById('map');
+    const button = document.querySelector('.map-toggle');
+    if (mapElement.style.display === 'none' || mapElement.style.display === '') {
+        mapElement.style.display = 'block';
+        button.textContent = 'Masquer la carte';
+        // Redimensionner la carte Leaflet après affichage
+        setTimeout(() => map.invalidateSize(), 100);
+    } else {
+        mapElement.style.display = 'none';
+        button.textContent = 'Afficher la carte';
+    }
+}
+
         // Initialisation de la carte
         const map = L.map('map').setView([46.603354, 1.888334], 6);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
