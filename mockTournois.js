@@ -661,7 +661,7 @@ const tournois = [
                 "classement": 12
             }
         ],
-        "deuxJours": true
+        "deuxJours": false
     },
     {
         "url": "https://www.tabletoptournaments.net/fr/t3_tournament.php?tid=36672",
