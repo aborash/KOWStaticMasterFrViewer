@@ -172,14 +172,9 @@ tr:hover {
     border: 1px solid #ccc;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
     margin-bottom: 10px;
+      display: none; 
 }
 
-/* Responsive : Mobile */
-@media (max-width: 768px) {
-    #map {
-        display: none; /* Masquée par défaut sur mobile */
-    }
-}
 
 
     </style>
@@ -246,11 +241,11 @@ tr:hover {
             // Bonus pour les tournois sur deux jours
             if (deuxJours) {
                 if (classement === 1) {
-                    points += 4;
+                    points += 6;
                 } else if (classement === 2) {
                     points += 3;
                 } else if (classement === 3) {
-                    points += 2;
+                    points += 1;
                 }
             }
             
