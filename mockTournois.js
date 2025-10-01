@@ -1,6 +1,5 @@
 // mockTournois.js
 // Liste d'objets Tournois pour affichage sur la carte
-
 const tournois = [
     {
         "url": "https://www.tabletoptournaments.net/fr/t3_tournament.php?tid=37044",
@@ -64,7 +63,8 @@ const tournois = [
                 "nom": "Dominique aka \"MaSeDrIm\"",
                 "classement": 14
             }
-        ]
+        ],
+        "deuxJours": false
     },
     {
         "url": "https://www.tabletoptournaments.net/fr/t3_tournament.php?tid=37045",
@@ -120,7 +120,8 @@ const tournois = [
                 "nom": "Adrien aka \"Pantoufle\"",
                 "classement": 12
             }
-        ]
+        ],
+        "deuxJours": false
     },
     {
         "url": "https://www.tabletoptournaments.net/fr/t3_tournament.php?tid=36974",
@@ -172,7 +173,8 @@ const tournois = [
                 "nom": "Jean aka \"Twerk\"",
                 "classement": 11
             }
-        ]
+        ],
+        "deuxJours": true
     },
     {
         "url": "https://www.tabletoptournaments.net/fr/t3_tournament.php?tid=36430",
@@ -228,7 +230,8 @@ const tournois = [
                 "nom": "Mario aka \"Marmiu\"",
                 "classement": 12
             }
-        ]
+        ],
+        "deuxJours": false
     },
     {
         "url": "https://www.tabletoptournaments.net/fr/t3_tournament.php?tid=37517",
@@ -260,7 +263,8 @@ const tournois = [
                 "nom": "Xavier aka \"Dalendur\"",
                 "classement": 6
             }
-        ]
+        ],
+        "deuxJours": false
     },
     {
         "url": "https://www.tabletoptournaments.net/fr/t3_tournament.php?tid=36461",
@@ -364,7 +368,8 @@ const tournois = [
                 "nom": "Joris aka \"Jawjaw\"",
                 "classement": 24
             }
-        ]
+        ],
+        "deuxJours": true
     },
     {
         "url": "https://www.tabletoptournaments.net/fr/t3_tournament.php?tid=36727",
@@ -452,7 +457,8 @@ const tournois = [
                 "nom": "Willy aka \"wil_ly\"",
                 "classement": 20
             }
-        ]
+        ],
+        "deuxJours": true
     },
     {
         "url": "https://www.tabletoptournaments.net/fr/t3_tournament.php?tid=36553",
@@ -508,14 +514,8 @@ const tournois = [
                 "nom": "Sylvain aka \"Helvain\"",
                 "classement": 12
             }
-        ]
-    },
-    {
-        "url": "https://www.tabletoptournaments.net/fr/t3_tournament.php?tid=37559",
-        "lat": 47.474,
-        "lon": 2.516,
-        "nom": "Muton noir sur une journée",
-        "resultats": []
+        ],
+        "deuxJours": true
     },
     {
         "url": "https://www.tabletoptournaments.net/fr/t3_tournament.php?tid=37606",
@@ -603,7 +603,8 @@ const tournois = [
                 "nom": "(anonyme)",
                 "classement": 20
             }
-        ]
+        ],
+        "deuxJours": true
     },
     {
         "url": "https://www.tabletoptournaments.net/fr/t3_tournament.php?tid=35708",
@@ -659,7 +660,8 @@ const tournois = [
                 "nom": "Sylvain aka \"Helvain\"",
                 "classement": 12
             }
-        ]
+        ],
+        "deuxJours": true
     },
     {
         "url": "https://www.tabletoptournaments.net/fr/t3_tournament.php?tid=36672",
@@ -715,7 +717,8 @@ const tournois = [
                 "nom": "Joris aka \"Jawjaw\"",
                 "classement": 12
             }
-        ]
+        ],
+        "deuxJours": true
     },
     {
         "url": "https://www.tabletoptournaments.net/fr/t3_tournament.php?tid=37878",
@@ -747,7 +750,8 @@ const tournois = [
                 "nom": "Gaëtan aka \"Zeeloy\"",
                 "classement": 6
             }
-        ]
+        ],
+        "deuxJours": true
     },
     {
         "url": "https://www.tabletoptournaments.net/fr/t3_tournament.php?tid=36645",
@@ -819,7 +823,8 @@ const tournois = [
                 "nom": "Dominique aka \"MaSeDrIm\"",
                 "classement": 16
             }
-        ]
+        ],
+        "deuxJours": true
     },
     {
         "url": "https://www.tabletoptournaments.net/fr/t3_tournament.php?tid=36483",
@@ -923,13 +928,162 @@ const tournois = [
                 "nom": "Ryan aka \"Wugga\"",
                 "classement": 24
             }
-        ]
+        ],
+        "deuxJours": true
+    },,
+    {
+        "url": "https://www.tabletoptournaments.net/fr/t3_tournament.php?tid=37991",
+        "lat": 50.643,
+        "lon": 3.099,
+        "nom": "Lille 2 - Tournoi Kings of War à Mons En Baroeul | T³",
+        "resultats": [
+            {
+                "nom": "Vincent aka \"Julo62\"",
+                "classement": 1
+            },
+            {
+                "nom": "Samuel aka \"expunk\"",
+                "classement": 2
+            },
+            {
+                "nom": "Paco aka \"Iblis\"",
+                "classement": 3
+            },
+            {
+                "nom": "Antonio aka \"Theodrid\"",
+                "classement": 4
+            },
+            {
+                "nom": "Alban aka \"walach\"",
+                "classement": 5
+            },
+            {
+                "nom": "Alex aka \"Alexlesec\"",
+                "classement": 6
+            },
+            {
+                "nom": "Maxime aka \"Fao\"",
+                "classement": 7
+            },
+            {
+                "nom": "Miguel Angel S.",
+                "classement": 8
+            },
+            {
+                "nom": "Oscar M.",
+                "classement": 9
+            },
+            {
+                "nom": "Olivier aka \"Orckel\"",
+                "classement": 10
+            },
+            {
+                "nom": "Rodolphe aka \"LuciusForge\"",
+                "classement": 11
+            },
+            {
+                "nom": "James aka \"Sousou\"",
+                "classement": 12
+            },
+            {
+                "nom": "Impair aka \"Impair\"",
+                "classement": 13
+            },
+            {
+                "nom": "Kenzo aka \"KENZO\"",
+                "classement": 14
+            }
+        ],
+        "deuxJours": false
+    },
+    {
+        "url": "https://www.tabletoptournaments.net/fr/t3_tournament.php?tid=37990",
+        "lat": 50.643,
+        "lon": 3.099,
+        "nom": "Lille 1 - Tournoi Kings of War à Mons En Baroeul | T³",
+        "resultats": [
+            {
+                "nom": "Paco aka \"Iblis\"",
+                "classement": 1
+            },
+            {
+                "nom": "Antonio aka \"Theodrid\"",
+                "classement": 2
+            },
+            {
+                "nom": "Alex aka \"Alexlesec\"",
+                "classement": 3
+            },
+            {
+                "nom": "Olivier aka \"Orckel\"",
+                "classement": 4
+            },
+            {
+                "nom": "Oscar M.",
+                "classement": 5
+            },
+            {
+                "nom": "Miguel Angel S.",
+                "classement": 6
+            },
+            {
+                "nom": "Alban aka \"walach\"",
+                "classement": 7
+            },
+            {
+                "nom": "Samuel aka \"expunk\"",
+                "classement": 8
+            },
+            {
+                "nom": "Olivier aka \"ollv\"",
+                "classement": 9
+            },
+            {
+                "nom": "Eric aka \"Crom-_-\"",
+                "classement": 10
+            },
+            {
+                "nom": "Rodolphe aka \"LuciusForge\"",
+                "classement": 11
+            },
+            {
+                "nom": "James aka \"Sousou\"",
+                "classement": 12
+            },
+            {
+                "nom": "Maxime aka \"Fao\"",
+                "classement": 13
+            },
+            {
+                "nom": "Vincent aka \"Julo62\"",
+                "classement": 14
+            },
+            {
+                "nom": "Kenzo aka \"KENZO\"",
+                "classement": 15
+            },
+            {
+                "nom": "Pierre aka \"meg\"",
+                "classement": 16
+            },
+            {
+                "nom": "Impair aka \"Impair\"",
+                "classement": 17
+            },
+            {
+                "nom": "Christophe aka \"galahad59\"",
+                "classement": 18
+            }
+        ],
+        "deuxJours": false
     },
     {
         "url": "https://www.tabletoptournaments.net/fr/t3_tournament.php?tid=37264",
         "lat": 43.35,
         "lon": -0.25,
         "nom": "The King of the Hill",
-        "resultats": []
+        "resultats": [],
+        "deuxJours": true
     }
 ];
+window.mockTournois = tournois;

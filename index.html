@@ -1,32 +1,123 @@
 <!DOCTYPE html>
 <html lang="fr">
+       <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        #map {
+            height: 60vh;
+            width: 80vw;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+        }
+        #classement {
+            max-height: 60vh;
+            overflow-y: auto;
+            width: 80vw;
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            position: sticky;
+            top: 0;
+            background-color: #4CAF50;
+            color: white;
+            z-index: 1;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        .points-cell {
+            position: relative;
+            cursor: help;
+        }
+        .tooltip {
+            display: none;
+            position: absolute;
+            background: white;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1000;
+            white-space: nowrap;
+            right: 0;
+        }
+        .points-cell:hover .tooltip {
+            display: block;
+        }
+        .best-score {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        .qualified {
+            background-color: #90EE90 !important;
+        }
+        .qualified:hover {
+            background-color: #78c278 !important;
+        }
+ .region-color {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+    border-radius: 2px;
+}
+
+.bretagne-normandie-color { background-color: #80939c; }
+.nord-color { background-color: #1fc03a; }
+.loire-color { background-color: #48433f; }
+.ardenne-bourgogne-color { background-color: #b46e39; }
+.est-color { background-color: #9c7e81; }
+.aquitaine-color { background-color: #ced0c4; }
+.occitanie-color { background-color: #dd0000; }
+.auvergne-color { background-color: #f5bf4c; }
+.alpes-color { background-color: #9d9c6c; }
+    </style>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carte avec adresse de tournoi</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-   <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            width: 100vw;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #f0f0f0;
-        }
-        #map {
-            height: 80vh;
-            width: 80vw;
-            border: 1px solid #ccc;
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
-        }
-    </style>
+
 </head>
 <body>
     <h1>Carte du tournoi</h1>
     <div id="map"></div>
+    <div id="classement">
+        <table id="tableauJoueurs">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nom du joueur</th>
+                    <th>Région</th>
+                    <th>Evenements</th>
+                    <th>Points totaux</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
@@ -37,19 +128,250 @@
         }).addTo(map);
 
 
-        // Importe le mock depuis un fichier séparé
-        // ...existing code...
-        const script = document.createElement('script');
-        script.src = 'mockTournois.js';
-        script.onload = function() {
+        // Constante pour le nombre maximum de tournois à prendre en compte
+        const MaxTournamentCount = 4;
+
+        // Fonction de calcul des points
+        function calculPoint(deuxJours, classement, nombreTotal) {
+            // Calcul de base : (nombreTotal/2 arrondi inférieur) - classement - 1
+            let points = Math.floor(nombreTotal / 2) - (classement - 1);
+            
+            // Bonus pour les tournois sur deux jours
+            if (deuxJours) {
+                if (classement === 1) {
+                    points += 4;
+                } else if (classement === 2) {
+                    points += 3;
+                } else if (classement === 3) {
+                    points += 2;
+                }
+            }
+            
+            // Retourne 0 si le résultat est négatif
+            return Math.max(0, points);
+        }
+
+
+        // Création de la classe Classement
+        class Classement {
+            constructor(nomTournoi, urlTournoi, classement, points) {
+                this.nomTournoi = nomTournoi;
+                this.urlTournoi = urlTournoi;
+                this.classement = classement;
+                this.points = points;
+            }
+        }
+
+        // Création de la classe Joueur
+        class Joueur {
+            constructor(nom, region) {
+                this.nom = nom;
+                this.region = region;
+                this.listeClassements = [];
+                this.pointTotal = 0;
+            }
+
+            ajouterClassement(classement) {
+                this.listeClassements.push(classement);
+                // Trier les classements par points décroissants
+                this.listeClassements.sort((a, b) => b.points - a.points);
+                // Recalculer le total avec les MaxTournamentCount meilleurs résultats
+                this.pointTotal = this.listeClassements
+                    .slice(0, MaxTournamentCount)
+                    .reduce((sum, c) => sum + c.points, 0);
+            }
+        }
+
+
+        // Champion de l'année dernière
+        const ChampionLastYear = "Antoine \"gitsnik\" Granet";
+
+        // Liste globale des joueurs
+        let allPlayers = new Map();
+
+        // Charger d'abord les tournois
+        const tournoiScript = document.createElement('script');
+        tournoiScript.src = 'mockTournois.js';
+        
+        tournoiScript.onload = function() {
             if (typeof tournois !== 'undefined') {
+                // Charger ensuite les joueurs
+                const playersScript = document.createElement('script');
+                playersScript.src = 'mockPlayer.js';
+                document.body.appendChild(playersScript);
+
+                playersScript.onload = function() {
+                // Calculer les points pour chaque résultat de chaque tournoi
                 tournois.forEach(tournoi => {
-                    L.marker([tournoi.lat, tournoi.lon]).addTo(map)
-                        .bindPopup(`<b>${tournoi.nom}</b><br><a href='${tournoi.url}' target='_blank'>Lien du tournoi</a>`);
+                    console.log('test');
+                    const nombreTotal = tournoi.resultats.length;
+                    tournoi.resultats.forEach(resultat => {
+                        resultat.nombreDePoints = calculPoint(tournoi.deuxJours, resultat.classement, nombreTotal);
+                    });
+                    
+                    // Calculer pointMax (points du premier)
+                    tournoi.pointMax = tournoi.resultats.length > 0 ? tournoi.resultats[0].nombreDePoints : 0;
+                    
+                    // Calculer pointTotale (somme des points de tous les joueurs)
+                    tournoi.pointTotale = tournoi.resultats.reduce((sum, resultat) => sum + resultat.nombreDePoints, 0);
                 });
+
+                // Grouper les tournois par coordonnées arrondies à 3 décimales
+                const tournoiParCoords = tournois.reduce((acc, tournoi) => {
+                    // Arrondir les coordonnées à 3 décimales
+                    const latRound = Math.round(tournoi.lat * 1000) / 1000;
+                    const lonRound = Math.round(tournoi.lon * 1000) / 1000;
+                    const key = `${latRound},${lonRound}`;
+                    
+                    if (!acc[key]) {
+                        acc[key] = {
+                            lat: tournoi.lat, // Garder la première coordonnée exacte
+                            lon: tournoi.lon,
+                            tournois: []
+                        };
+                    }
+                    acc[key].tournois.push(tournoi);
+                    
+                    // Si on vient d'ajouter un deuxième tournoi ou plus à ce groupe
+                    if (acc[key].tournois.length > 1) {
+                        console.log('Tournois regroupés aux coordonnées', latRound, lonRound, ':');
+                        acc[key].tournois.forEach(t => console.log('-', t.nom));
+                    }else{
+                        console.log('Tournois tout seule', latRound, lonRound, ':');
+                    }
+                    return acc;
+                }, {});
+
+                // Créer les markers pour chaque groupe de tournois
+                Object.values(tournoiParCoords).forEach((group) => {
+                    // Créer le contenu du popup avec tous les tournois
+                    const popupContent = group.tournois
+                        .map(tournoi => `
+                            <b>${tournoi.nom}</b><br>
+                            Points max : ${tournoi.pointMax}<br>
+                            Points totaux : ${tournoi.pointTotale}<br>
+                            <a href='${tournoi.url}' target='_blank'>Lien du tournoi</a>
+                        `)
+                        .join('<br><br>');
+                    
+                    L.marker([group.lat, group.lon]).addTo(map)
+                        .bindPopup(popupContent);
+                });
+
+                // Création des objets Joueur et de leurs classements
+                if (typeof mockPlayer !== 'undefined') {
+                    console.log('mockPlayer est défini avec', mockPlayer.length, 'joueurs.');
+                    // Initialiser les joueurs
+                    mockPlayer.forEach(joueur => {
+                        allPlayers.set(joueur.nom, new Joueur(joueur.nom, joueur.region));
+                    });
+
+                    // Parcourir tous les tournois pour ajouter les classements
+                    tournois.forEach(tournoi => {
+                        tournoi.resultats.forEach(resultat => {
+                            let joueur = allPlayers.get(resultat.nom);
+                            if (joueur) {
+                                const classement = new Classement(
+                                    tournoi.nom,
+                                    tournoi.url,
+                                    resultat.classement,
+                                    resultat.nombreDePoints
+                                );
+                                joueur.ajouterClassement(classement);
+                            }
+                        });
+                    });
+
+                    // Afficher le tableau des joueurs
+                    const tbody = document.querySelector('#tableauJoueurs tbody');
+                    const sortedPlayers = Array.from(allPlayers.values())
+                        .sort((a, b) => {
+                            // D'abord comparer les points totaux
+                            const pointsDiff = b.pointTotal - a.pointTotal;
+                            if (pointsDiff !== 0) return pointsDiff;
+                            
+                            // En cas d'égalité, comparer le nombre de tounois joués
+                            return  a.listeClassements.length-b.listeClassements.length;
+                        });
+
+                    // Garder une trace des joueurs qualifiés
+                    const qualifiedPlayers = new Set();
+                    
+                    // Qualifier le champion de l'année dernière
+                    const championIndex = sortedPlayers.findIndex(j => j.nom === ChampionLastYear);
+                    if (championIndex !== -1) {
+                        qualifiedPlayers.add(sortedPlayers[championIndex].nom);
+                    }
+
+                    // Qualifier les 14 premiers non déjà qualifiés
+                    let qualifiedCount = 0;
+                    sortedPlayers.forEach((joueur, index) => {
+                        if (qualifiedCount < 14 && !qualifiedPlayers.has(joueur.nom)) {
+                            qualifiedPlayers.add(joueur.nom);
+                            qualifiedCount++;
+                        }
+                    });
+
+                    // Qualifier les premiers de chaque région non déjà qualifiés
+                    const regions = new Set(sortedPlayers.map(j => j.region));
+                    regions.forEach(region => {
+                        if (region) { // Ignorer les régions non spécifiées
+                            const firstInRegion = sortedPlayers.find(j => 
+                                j.region === region && !qualifiedPlayers.has(j.nom)
+                            );
+                            if (firstInRegion) {
+                                qualifiedPlayers.add(firstInRegion.nom);
+                            }
+                        }
+                    });
+
+                    // Afficher les joueurs
+                    sortedPlayers.forEach(joueur => {
+                            const tr = document.createElement('tr');
+                            if (qualifiedPlayers.has(joueur.nom)) {
+                                tr.classList.add('qualified');
+                            }
+                            
+                            // Créer le contenu du tooltip
+                            const tooltipContent = joueur.listeClassements
+                                .map((c, index) => {
+                                    const isBest = index < MaxTournamentCount;
+                                    return `<div class="${isBest ? 'best-score' : ''}">${isBest ? '► ' : '  '}${c.nomTournoi}: ${c.classement}e (${c.points} pts)</div>`;
+                                })
+                                .join('');
+                            
+                            const position = sortedPlayers.indexOf(joueur) + 1;
+                            tr.innerHTML = `
+                                <td>${position}</td>
+                                <td>${joueur.nom}</td>
+                               <td>
+    <span class="region-color
+        ${joueur.region === 'Bretagne-Normandie' ? 'bretagne-normandie-color' :
+          joueur.region === 'Nord' ? 'nord-color' :
+          joueur.region === 'Loire' ? 'loire-color' :
+          joueur.region === 'Ardenne-Bourgogne' ? 'ardenne-bourgogne-color' :
+          joueur.region === 'Est' ? 'est-color' :
+          joueur.region === 'Aquitaine' ? 'aquitaine-color' :
+          joueur.region === 'Occitanie' ? 'occitanie-color' :
+          joueur.region === 'Auvergne' ? 'auvergne-color' :
+          joueur.region === 'Alpes' ? 'alpes-color' : ''}"></span>
+    ${joueur.region || 'Non spécifiée'}
+</td>
+                                <td>${joueur.listeClassements.length}</td>
+                                <td class="points-cell">
+                                    ${joueur.pointTotal}
+                                    <div class="tooltip">${tooltipContent}</div>
+                                </td>
+                            `;
+                            tbody.appendChild(tr);
+                        });
+                } else {
+                    console.error('mockPlayer est indéfini.');
+                }
+                };
             }
         };
-        document.body.appendChild(script);
+        document.body.appendChild(tournoiScript);
     </script>
 </body>
 </html>
