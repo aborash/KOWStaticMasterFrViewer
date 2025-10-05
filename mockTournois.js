@@ -1148,7 +1148,57 @@ const tournois = [
         "lat": 43.35,
         "lon": -0.25,
         "nom": "The King of the Hill",
-        "resultats": [],
+        "resultats": [
+    {
+        "nom": "Vincent aka \"Beerserkr\"",
+        "classement": 1
+    },
+    {
+        "nom": "Vincent aka \"vince3310\"",
+        "classement": 2
+    },
+    {
+        "nom": "Kevin aka \"Ketep\"",
+        "classement": 3
+    },
+    {
+        "nom": "Adrien aka \"Pantoufle\"",
+        "classement": 4
+    },
+    {
+        "nom": "Rachid aka \"Le_Cul_de_Jatte\"",
+        "classement": 5
+    },
+    {
+        "nom": "Mathieu aka \"Beji\"",
+        "classement": 6
+    },
+    {
+        "nom": "Thibault aka \"Chapelier\"",
+        "classement": 7
+    },
+    {
+        "nom": "Benjamin aka \"Nabot\"",
+        "classement": 8
+    },
+    {
+        "nom": "Mathieu aka \"krypt\"",
+        "classement": 9
+    },
+    {
+        "nom": "Florent aka \"Gorgorbey\"",
+        "classement": 10
+    },
+    {
+        "nom": "Florian aka \"Flopus_hodus\"",
+        "classement": 11
+    },
+    {
+        "nom": "Sylvain aka \"Helvain\"",
+        "classement": 12
+    }
+]
+,
         "deuxJours": true
     }
 ];

@@ -553,7 +553,15 @@ const joueurs = [
         "region": "Nord",
         "classements": [],
         "pointTotal": 0
+    },
+    {
+        "nom": "Vincent aka \"vince3310\"",
+        "region": "Occitanie",
+        "classements": [],
+        "pointTotal": 0
     }
+
+	
 
 ];
 window.mockPlayer = joueurs;
