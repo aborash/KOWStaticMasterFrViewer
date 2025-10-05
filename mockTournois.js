@@ -1200,6 +1200,31 @@ const tournois = [
 ]
 ,
         "deuxJours": true
-    }
+    }, 
+    {
+        "url": "https://www.tabletoptournaments.net/fr/t3_tournament.php?tid=38470",
+        "lat": 44.895,
+        "lon": 4.645,
+        "nom": "La Castagne V",
+        "resultats": [
+            {
+                "nom": "Céleste aka \"Jarekson\"",
+                "classement": 1
+            },
+			{
+                "nom": "Mierre aka \"AEnoriel\"",
+                "classement": 2
+            },
+			{
+                "nom": "Patrick aka \"PinusDePrusse\"",
+                "classement": 3
+            },
+			{
+                "nom": "Liam aka \"Siilence\"",
+                "classement": 4
+            }
+        ],
+        "deuxJours": false
+    },
 ];
 window.mockTournois = tournois;
