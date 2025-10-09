@@ -232,7 +232,7 @@ const joueurs = [
     },
     {
         "nom": "Céleste aka \"Jarekson\"",
-        "region": "Auvergne",
+        "region": "Alpes",
         "classements": [],
         "pointTotal": 0
     },
