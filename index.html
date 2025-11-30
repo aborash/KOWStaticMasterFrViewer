@@ -222,7 +222,7 @@ tr:hover {
         button.textContent = 'Afficher la carte';
     }
 }
-
+toggleMap()
         // Initialisation de la carte
         const map = L.map('map').setView([46.603354, 1.888334], 6);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -286,7 +286,7 @@ tr:hover {
 
 
         // Champion de l'année dernière
-        const ChampionLastYear = "Antoine \"gitsnik\" Granet";
+        const ChampionLastYear = "Arthur aka \"AVL\"";
 
         // Liste globale des joueurs
         let allPlayers = new Map();
@@ -305,7 +305,7 @@ tr:hover {
                 playersScript.onload = function() {
                 // Calculer les points pour chaque résultat de chaque tournoi
                 tournois.forEach(tournoi => {
-                    console.log('test');
+
                     const nombreTotal = tournoi.resultats.length;
                     tournoi.resultats.forEach(resultat => {
                         resultat.nombreDePoints = calculPoint(tournoi.deuxJours, resultat.classement, nombreTotal);
@@ -348,13 +348,20 @@ tr:hover {
                 Object.values(tournoiParCoords).forEach((group) => {
                     // Créer le contenu du popup avec tous les tournois
                     const popupContent = group.tournois
-                        .map(tournoi => `
+                    .map(tournoi => {
+                        const dateFin = tournoi.deuxJours ? ` au ${formatDateFR(new Date(new Date(tournoi.date).getTime() + 86400000).toISOString().split('T')[0])}` : '';
+                        let popupContent = `
                             <b>${tournoi.nom}</b><br>
+                            Date : ${formatDateFR(tournoi.date)}${dateFin}<br>
                             Points max : ${tournoi.pointMax}<br>
                             Points totaux : ${tournoi.pointTotale}<br>
-                            <a href='${tournoi.url}' target='_blank'>Lien du tournoi</a>
-                        `)
-                        .join('<br><br>');
+                        `;
+                        if (tournoi.url) {
+                            popupContent += `<a href='${tournoi.url}' target='_blank'>Lien du tournoi</a>`;
+                        }
+                        return popupContent;
+                    })
+                    .join('<br><br>');
                     
                     L.marker([group.lat, group.lon]).addTo(map)
                         .bindPopup(popupContent);
@@ -367,6 +374,8 @@ tr:hover {
                     mockPlayer.forEach(joueur => {
                         allPlayers.set(joueur.nom, new Joueur(joueur.nom, joueur.region));
                     });
+
+                    console.log("test");
 
                     // Parcourir tous les tournois pour ajouter les classements
                     tournois.forEach(tournoi => {
@@ -395,6 +404,19 @@ tr:hover {
                             // En cas d'égalité, comparer le nombre de tounois joués
                             return  a.listeClassements.length-b.listeClassements.length;
                         });
+
+                    // Placer le ChampionLastYear en tête de la liste triée
+                    sortedPlayers.sort((a, b) => {
+    if (a.nom === ChampionLastYear) return -1; // ChampionLastYear en premier
+    if (b.nom === ChampionLastYear) return 1;
+
+    // Comparer les points totaux
+    const pointsDiff = b.pointTotal - a.pointTotal;
+    if (pointsDiff !== 0) return pointsDiff;
+
+    // En cas d'égalité, comparer le nombre de tournois joués
+    return a.listeClassements.length - b.listeClassements.length;
+});
 
                     // Garder une trace des joueurs qualifiés
                     const qualifiedPlayers = new Set();
@@ -427,48 +449,53 @@ tr:hover {
                         }
                     });
 
-                    // Afficher les joueurs
-                    sortedPlayers.forEach(joueur => {
-                            const tr = document.createElement('tr');
-                            if (qualifiedPlayers.has(joueur.nom)) {
-                                tr.classList.add('qualified');
-                            }
-                            
-                            // Créer le contenu du tooltip
-                            const tooltipContent = joueur.listeClassements
-                                .map((c, index) => {
-                                    const isBest = index < MaxTournamentCount;
-                                    return `<div class="${isBest ? 'best-score' : ''} clickable" onclick="window.open('${c.urlTournoi}', '_blank')">
-    ${isBest ? '► ' : '  '}${c.nomTournoi}: ${c.classement}e (${c.points} pts)
+                    // Filtrer les joueurs pour n'afficher que ceux ayant participé à au moins un tournoi ou étant le ChampionLastYear
+                    const filteredPlayers = sortedPlayers.filter(joueur => 
+    joueur.listeClassements.length > 0 || joueur.nom === ChampionLastYear
+);
+
+                    // Afficher les joueurs filtrés
+                    filteredPlayers.forEach(joueur => {
+    const tr = document.createElement('tr');
+    if (qualifiedPlayers.has(joueur.nom)) {
+        tr.classList.add('qualified');
+    }
+
+    // Créer le contenu du tooltip
+    const tooltipContent = joueur.listeClassements
+        .map((c, index) => {
+            const isBest = index < MaxTournamentCount;
+            return `<div class="${isBest ? 'best-score' : ''} clickable" onclick="window.open('${c.urlTournoi}', '_blank')">
+${isBest ? '► ' : '  '}${c.nomTournoi}: ${c.classement}e (${c.points} pts)
 </div>`;
-                                })
-                                .join('');
-                            
-                            const position = sortedPlayers.indexOf(joueur) + 1;
-                            tr.innerHTML = `
-                                <td>${position}</td>
-                                <td>${joueur.nom}</td>
-                               <td>
-    <span class="region-color
-        ${joueur.region === 'Bretagne-Normandie' ? 'bretagne-normandie-color' :
-          joueur.region === 'Nord' ? 'nord-color' :
-          joueur.region === 'Loire' ? 'loire-color' :
-          joueur.region === 'Ardenne-Bourgogne' ? 'ardenne-bourgogne-color' :
-          joueur.region === 'Est' ? 'est-color' :
-          joueur.region === 'Aquitaine' ? 'aquitaine-color' :
-          joueur.region === 'Occitanie' ? 'occitanie-color' :
-          joueur.region === 'Auvergne' ? 'auvergne-color' :
-          joueur.region === 'Alpes' ? 'alpes-color' : ''}"></span>
-    ${joueur.region || 'Non spécifiée'}
-</td>
-                                <td>${joueur.listeClassements.length}</td>
-                                <td class="points-cell">
-                                    ${joueur.pointTotal}
-                                    <div class="tooltip">${tooltipContent}</div>
-                                </td>
-                            `;
-                            tbody.appendChild(tr);
-                        });
+        })
+        .join('');
+
+    const position = filteredPlayers.indexOf(joueur) + 1;
+    tr.innerHTML = `
+        <td>${position}</td>
+        <td>${joueur.nom} ${joueur.nom === ChampionLastYear ? '👑' : ''}</td>
+        <td>
+            <span class="region-color
+                ${joueur.region === 'Bretagne-Normandie' ? 'bretagne-normandie-color' :
+                  joueur.region === 'Nord' ? 'nord-color' :
+                  joueur.region === 'Loire' ? 'loire-color' :
+                  joueur.region === 'Ardenne-Bourgogne' ? 'ardenne-bourgogne-color' :
+                  joueur.region === 'Est' ? 'est-color' :
+                  joueur.region === 'Aquitaine' ? 'aquitaine-color' :
+                  joueur.region === 'Occitanie' ? 'occitanie-color' :
+                  joueur.region === 'Auvergne' ? 'auvergne-color' :
+                  joueur.region === 'Alpes' ? 'alpes-color' : ''}"></span>
+            ${joueur.region || 'Non spécifiée'}
+        </td>
+        <td>${joueur.listeClassements.length}</td>
+        <td class="points-cell">
+            ${joueur.pointTotal}
+            <div class="tooltip">${tooltipContent}</div>
+        </td>
+    `;
+    tbody.appendChild(tr);
+});
                 } else {
                     console.error('mockPlayer est indéfini.');
                 }
@@ -476,6 +503,17 @@ tr:hover {
             }
         };
         document.body.appendChild(tournoiScript);
+    </script>
+    <script>
+// Ajout d'une fonction pour formater les dates en français
+function formatDateFR(dateString) {
+    const options = { day: 'numeric', month: 'long', year: 'numeric' };
+    const date = new Date(dateString);
+    return date.toLocaleDateString('fr-FR', options);
+}
+
+
+
     </script>
 </body>
 </html>
