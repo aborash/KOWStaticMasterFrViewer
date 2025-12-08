@@ -13,22 +13,22 @@ const tournois = [
         "deuxJours": false
     },
     {
+        "url": "https://www.tabletoptournaments.net/fr/t3_tournament.php?tid=36410",
+        "lat": 47.7167,
+        "lon": -1.3833,
+        "date":"2026-01-31",
+        "nom": "Les mée'rcenaires VII",
+        "resultats": [
+  
+        ],
+        "deuxJours": true
+    },
+    {
         "url": "",
         "lat":  43.674751,
         "lon": 1.458447,
         "date":"2026-01-31",
         "nom": "Launa gamer 2026",
-        "resultats": [
-  
-        ],
-        "deuxJours": false
-    },
-    {
-        "url": "",
-        "lat": 47.7167,
-        "lon": -1.3833,
-        "date":"2026-01-31",
-        "nom": "Les mée'rcenaires VII",
         "resultats": [
   
         ],
@@ -42,17 +42,6 @@ const tournois = [
         "nom": "King in the North VII",
         "resultats": [
      
-        ],
-        "deuxJours": true
-    },
-    {
-        "url": "",
-        "lat": 44.895,
-        "lon": 4.645,
-        "nom": "TAK VII",
-        "date":"2026-06-20",
-        "resultats": [
-        
         ],
         "deuxJours": true
     },
@@ -78,7 +67,7 @@ const tournois = [
         "deuxJours": true
     },
         {
-        "url": "",
+        "url": "https://www.tabletoptournaments.net/fr/t3_tournament.php?tid=39900",
         "lat":47.0833,
         "lon": 2.4,
         "nom": "Charge des figurines",
@@ -89,7 +78,7 @@ const tournois = [
         "deuxJours": true
     },
     {
-        "url": "https://www.tabletoptournaments.net/fr/t3_tournament.php?tid=36727",
+        "url": "https://www.tabletoptournaments.net/fr/t3_tournament.php?tid=39922",
         "lat": 47.8049,
         "lon": 3.53321,
         "nom": "La Big Bourgogne Cup 2026",
@@ -97,7 +86,7 @@ const tournois = [
         "resultats": [
    
         ],
-        "deuxJours": false
+        "deuxJours": true
     },{
         "url": "https://www.tabletoptournaments.net/t3_tournament.php?tid=39847",
         "lat": 45.8984,
@@ -117,6 +106,17 @@ const tournois = [
                 "date":"2026-06-06",
         "resultats": [
        
+        ],
+        "deuxJours": true
+    },
+    {
+        "url": "https://www.tabletoptournaments.net/fr/t3_tournament.php?tid=39856",
+        "lat": 44.895,
+        "lon": 4.645,
+        "nom": "TAK VII",
+        "date":"2026-06-20",
+        "resultats": [
+        
         ],
         "deuxJours": true
     },
