@@ -536,18 +536,23 @@ toggleMap()
     return a.listeClassements.length - b.listeClassements.length;
 });
 
+                    // Filtrer les joueurs pour n'afficher que ceux ayant participé à au moins un tournoi ou étant le ChampionLastYear
+                    const filteredPlayers = sortedPlayers.filter(joueur => 
+    joueur.listeClassements.length > 0 || joueur.nom === ChampionLastYear
+);
+
                     // Garder une trace des joueurs qualifiés
                     const qualifiedPlayers = new Set();
                     
                     // Qualifier le champion de l'année dernière
-                    const championIndex = sortedPlayers.findIndex(j => j.nom === ChampionLastYear);
+                    const championIndex = filteredPlayers.findIndex(j => j.nom === ChampionLastYear);
                     if (championIndex !== -1) {
-                        qualifiedPlayers.add(sortedPlayers[championIndex].nom);
+                        qualifiedPlayers.add(filteredPlayers[championIndex].nom);
                     }
 
                     // Qualifier les 14 premiers non déjà qualifiés
                     let qualifiedCount = 0;
-                    sortedPlayers.forEach((joueur, index) => {
+                    filteredPlayers.forEach((joueur, index) => {
                         if (qualifiedCount < 14 && !qualifiedPlayers.has(joueur.nom)) {
                             qualifiedPlayers.add(joueur.nom);
                             qualifiedCount++;
@@ -555,10 +560,10 @@ toggleMap()
                     });
 
                     // Qualifier les premiers de chaque région non déjà qualifiés
-                    const regions = new Set(sortedPlayers.map(j => j.region));
+                    const regions = new Set(filteredPlayers.map(j => j.region));
                     regions.forEach(region => {
                         if (region) { // Ignorer les régions non spécifiées
-                            const firstInRegion = sortedPlayers.find(j => 
+                            const firstInRegion = filteredPlayers.find(j => 
                                 j.region === region && !qualifiedPlayers.has(j.nom)
                             );
                             if (firstInRegion) {
@@ -566,11 +571,6 @@ toggleMap()
                             }
                         }
                     });
-
-                    // Filtrer les joueurs pour n'afficher que ceux ayant participé à au moins un tournoi ou étant le ChampionLastYear
-                    const filteredPlayers = sortedPlayers.filter(joueur => 
-    joueur.listeClassements.length > 0 || joueur.nom === ChampionLastYear
-);
 
                     // Afficher les joueurs filtrés
                     filteredPlayers.forEach(joueur => {

@@ -559,6 +559,18 @@ const joueurs = [
         "region": "Occitanie",
         "listeClassements": [],
         "pointTotal": 0
+    },
+    {
+        "nom": "Sebastien aka \"Ysardul\"",
+        "region": "Occitanie",
+        "listeClassements": [],
+        "pointTotal": 0
+    },
+    {
+        "nom": "Guilhem aka \"Lauzerg974\"",
+        "region": "Occitanie",
+        "listeClassements": [],
+        "pointTotal": 0
     }
 
 	
