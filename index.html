@@ -1,293 +1,292 @@
 <!DOCTYPE html>
 <html lang="fr">
-       <style>
-/* Reset et base */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    min-height: 100vh;
-}
+    <style>
+        /* Reset et base */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            min-height: 100vh;
+        }
 
-/* En-tête */
-h1 {
-    text-align: center;
-    margin: 10px 0;
-    font-size: 1.5rem;
-}
+        /* En-tête */
+        h1 {
+            text-align: center;
+            margin: 10px 0;
+            font-size: 1.5rem;
+        }
 
-/* Réorganisation pour une structure en trois blocs */
-.header {
-    width: 100%;
-    text-align: center;
-    padding: 20px 0;
-    background-color: #f4f4f4;
-    font-size: 1.5rem;
-    font-weight: bold;
-}
+        /* Réorganisation pour une structure en trois blocs */
+        .header {
+            width: 100%;
+            text-align: center;
+            padding: 20px 0;
+            background-color: #f4f4f4;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
 
-.button-container {
-    width: 100%;
-    text-align: center;
-    padding: 20px 0;
-    background-color: #ffffff;
-}
+        .button-container {
+            width: 100%;
+            text-align: center;
+            padding: 20px 0;
+            background-color: #ffffff;
+        }
 
-/* Conteneur principal */
-.map-list-container {
-    display: flex;
-    width: 100%;
-    height: 80vh;
-}
+        /* Conteneur principal */
+        .map-list-container {
+            display: flex;
+            width: 100%;
+            height: 80vh;
+        }
 
-/* Nouveau conteneur pour la carte et le bouton */
-.map-container {
-    display: flex;
-    flex-direction: column; /* Aligner le bouton et la carte verticalement */
-    flex: 2; /* La carte et son bouton occupent 2/3 de l'espace */
-    background-color: #eaeaea;
-    padding: 10px;
-}
+        /* Nouveau conteneur pour la carte et le bouton */
+        .map-container {
+            display: flex;
+            flex-direction: column; /* Aligner le bouton et la carte verticalement */
+            flex: 2; /* La carte et son bouton occupent 2/3 de l'espace */
+            background-color: #eaeaea;
+            padding: 10px;
+        }
 
-/* Bouton pour afficher/masquer la carte (mobile) */
-.map-toggle {
-    display: block; /* Toujours visible */
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px;
-    margin: 10px auto; /* Centrer le bouton sous le titre */
-    width: auto; /* Ajuster la largeur pour qu'elle s'adapte au contenu */
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-}
+        /* Bouton pour afficher/masquer la carte (mobile) */
+        .map-toggle {
+            display: block; /* Toujours visible */
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin: 10px auto; /* Centrer le bouton sous le titre */
+            width: auto; /* Ajuster la largeur pour qu'elle s'adapte au contenu */
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
 
-/* Carte */
-#map {
-    height: 80vh; /* Ajuster la hauteur pour qu'elle soit plus grande */
-    margin-top: 10px; /* Espacement entre le bouton et la carte */
-    width: 100%;
-    border: 1px solid #ccc;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    display: none; 
-}
+        /* Carte */
+        #map {
+            height: 80vh; /* Ajuster la hauteur pour qu'elle soit plus grande */
+            margin-top: 10px; /* Espacement entre le bouton et la carte */
+            width: 100%;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            display: none; 
+        }
 
-/* Liste des joueurs */
-.list-container {
-    flex: 1;
-    background-color: #ffffff;
-    padding: 10px;
-    overflow-y: auto;
-}
+        /* Liste des joueurs */
+        .list-container {
+            flex: 1;
+            background-color: #ffffff;
+            padding: 10px;
+            overflow-y: auto;
+        }
 
-/* Classement */
-#classement {
-    flex: 1; /* La liste des joueurs occupe 1/3 de l'espace */
-    max-height: 80vh; /* Limiter la hauteur pour éviter le débordement */
-    overflow-y: auto; /* Ajouter un défilement si nécessaire */
-    width: 100%;
-    background-color: white;
-    border-radius: 4px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    padding: 0;
-    box-sizing: border-box;
-}
+        /* Classement */
+        #classement {
+            flex: 1; /* La liste des joueurs occupe 1/3 de l'espace */
+            max-height: 80vh; /* Limiter la hauteur pour éviter le débordement */
+            overflow-y: auto; /* Ajouter un défilement si nécessaire */
+            width: 100%;
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* Tableau */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: white;
-    font-size: 0.9rem;
-}
+        /* Tableau */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            font-size: 0.9rem;
+        }
 
-th, td {
-    padding: 8px 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
+        th, td {
+            padding: 8px 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
 
-th {
-    position: sticky;
-    top: 0;
-    background-color: #4CAF50;
-    color: white;
-    z-index: 1;
-}
+        th {
+            position: sticky;
+            top: 0;
+            background-color: #4CAF50;
+            color: white;
+            z-index: 1;
+        }
 
-/* Lignes du tableau */
-tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
+        /* Lignes du tableau */
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
 
-tr:hover {
-    background-color: #ddd;
-}
+        tr:hover {
+            background-color: #ddd;
+        }
 
-/* Cellules spécifiques */
-.points-cell {
-    position: relative;
-    cursor: help;
-}
+        /* Cellules spécifiques */
+        .points-cell {
+            position: relative;
+            cursor: help;
+        }
 
-.tooltip {
-    display: none;
-    position: absolute;
-    background: white;
-    border: 1px solid #ccc;
-    padding: 8px;
-    border-radius: 4px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    z-index: 1000;
-    white-space: nowrap;
-    right: 0;
-    font-size: 0.8rem;
-}
+        .tooltip {
+            display: none;
+            position: absolute;
+            background: white;
+            border: 1px solid #ccc;
+            padding: 8px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1000;
+            white-space: nowrap;
+            right: 0;
+            font-size: 0.8rem;
+        }
 
-.points-cell:hover .tooltip {
-    display: block;
-}
+        .points-cell:hover .tooltip {
+            display: block;
+        }
 
-.clickable {
-    cursor: pointer;
-    text-decoration: underline;
-    color: rgb(0, 0, 0);
-}
+        .clickable {
+            cursor: pointer;
+            text-decoration: underline;
+            color: rgb(0, 0, 0);
+        }
 
-.best-score.clickable {
-    color: #4CAF50; /* Vert pour les best-score */
-}
-.qualified {
-    background-color: #90EE90 !important;
-}
+        .best-score.clickable {
+            color: #4CAF50; /* Vert pour les best-score */
+        }
+        .qualified {
+            background-color: #90EE90 !important;
+        }
 
-.qualified:hover {
-    background-color: #78c278 !important;
-}
+        .qualified:hover {
+            background-color: #78c278 !important;
+        }
 
-/* Régions */
-.region-color {
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    margin-right: 5px;
-    border-radius: 2px;
-}
+        /* Régions */
+        .region-color {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin-right: 5px;
+            border-radius: 2px;
+        }
 
-.bretagne-normandie-color { background-color: #80939c; }
-.nord-color { background-color: #1fc03a; }
-.loire-color { background-color: #48433f; }
-.ardenne-bourgogne-color { background-color: #b46e39; }
-.est-color { background-color: #9c7e81; }
-.aquitaine-color { background-color: #ced0c4; }
-.occitanie-color { background-color: #dd0000; }
-.auvergne-color { background-color: #f5bf4c; }
-.alpes-color { background-color: #9d9c6c; }
+        .Marron-color { background-color: #311415; }
+        .Vert-color { background-color: #32832E }
+        .Jaune-color { background-color: #D8AE04 }
+        .Violet-color { background-color: #5D2F71 }
+        .Cyan-color { background-color: #45B6CC }
+        .Orange-color { background-color: #E95C02 }
+        .Rouge-color { background-color: #dd0000; }
+        .Vert-Clair-color { background-color: #15DD6A; }
 
-/* Responsive : Mobile */
-/* Bouton pour afficher/masquer la carte */
-.map-toggle {
-    display: block; /* Toujours visible */
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px;
-    margin: 10px auto;
-    width: 80%;
-    max-width: 300px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-}
+        /* Responsive : Mobile */
+        /* Bouton pour afficher/masquer la carte */
+        .map-toggle {
+            display: block; /* Toujours visible */
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin: 10px auto;
+            width: 80%;
+            max-width: 300px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
 
-/* Carte visible par défaut sur PC, masquée sur mobile */
-#map {
-    height: 50vh;
-    width: 100%;
-    border: 1px solid #ccc;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    margin-bottom: 10px;
-      display: none; 
-}
+        /* Carte visible par défaut sur PC, masquée sur mobile */
+        #map {
+            height: 50vh;
+            width: 100%;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            margin-bottom: 10px;
+              display: none; 
+        }
 
-/* Ajustement pour organiser la disposition avec le titre, le bouton, et la carte/liste */
-.container {
-    display: flex;
-    flex-direction: row; /* Aligner la carte et la liste horizontalement */
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-top: 20px; /* Espacement entre le bouton et le contenu */
-}
+        /* Ajustement pour organiser la disposition avec le titre, le bouton, et la carte/liste */
+        .container {
+            display: flex;
+            flex-direction: row; /* Aligner la carte et la liste horizontalement */
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-top: 20px; /* Espacement entre le bouton et le contenu */
+        }
 
-.map-container {
-    display: flex;
-    flex-direction: column; /* Aligner le bouton et la carte verticalement */
-    flex: 2; /* La carte et son bouton occupent 2/3 de l'espace */
-}
+        .map-container {
+            display: flex;
+            flex-direction: column; /* Aligner le bouton et la carte verticalement */
+            flex: 2; /* La carte et son bouton occupent 2/3 de l'espace */
+        }
 
-#map {
-    height: 80vh; /* Ajuster la hauteur pour qu'elle soit plus grande */
-    margin-top: 10px; /* Espacement entre le bouton et la carte */
-}
+        #map {
+            height: 80vh; /* Ajuster la hauteur pour qu'elle soit plus grande */
+            margin-top: 10px; /* Espacement entre le bouton et la carte */
+        }
 
-#classement {
-    flex: 1; /* La liste des joueurs occupe 1/3 de l'espace */
-    max-height: 80vh; /* Limiter la hauteur pour éviter le débordement */
-    overflow-y: auto; /* Ajouter un défilement si nécessaire */
-}
+        #classement {
+            flex: 1; /* La liste des joueurs occupe 1/3 de l'espace */
+            max-height: 80vh; /* Limiter la hauteur pour éviter le débordement */
+            overflow-y: auto; /* Ajouter un défilement si nécessaire */
+        }
 
-.map-toggle {
-    display: block; /* Toujours visible */
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px;
-    margin: 10px auto; /* Centrer le bouton sous le titre */
-    width: auto; /* Ajuster la largeur pour qu'elle s'adapte au contenu */
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-}
+        .map-toggle {
+            display: block; /* Toujours visible */
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin: 10px auto; /* Centrer le bouton sous le titre */
+            width: auto; /* Ajuster la largeur pour qu'elle s'adapte au contenu */
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
 
-/* Ajout de styles pour les téléphones (responsive design) */
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column; /* Revenir à une disposition verticale */
-        align-items: center; /* Centrer les éléments */
-    }
+        /* Ajout de styles pour les téléphones (responsive design) */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column; /* Revenir à une disposition verticale */
+                align-items: center; /* Centrer les éléments */
+            }
 
-    .map-container {
-        width: 100%; /* La carte prend toute la largeur */
-    }
+            .map-container {
+                width: 100%; /* La carte prend toute la largeur */
+            }
 
-    #map {
-        height: 50vh; /* Réduire la hauteur de la carte */
-        margin: 0; /* Supprimer les marges inutiles */
-    }
+            #map {
+                height: 50vh; /* Réduire la hauteur de la carte */
+                margin: 0; /* Supprimer les marges inutiles */
+            }
 
-    #classement {
-        width: 100%; /* La liste des joueurs prend toute la largeur */
-        max-height: none; /* Supprimer la limite de hauteur */
-        overflow-y: visible; /* Désactiver le défilement */
-    }
+            #classement {
+                width: 100%; /* La liste des joueurs prend toute la largeur */
+                max-height: none; /* Supprimer la limite de hauteur */
+                overflow-y: visible; /* Désactiver le défilement */
+            }
 
-    .map-toggle {
-        margin: 10px auto; /* Centrer le bouton */
-    }
+            .map-toggle {
+                margin: 10px auto; /* Centrer le bouton */
+            }
 
-    /* Ajout de styles pour l'affichage mobile */
-    .map-list-container {
-        flex-direction: column; /* Passer à une disposition verticale */
-    }
+            /* Ajout de styles pour l'affichage mobile */
+            .map-list-container {
+                flex-direction: column; /* Passer à une disposition verticale */
+            }
 
-    .map-container, .list-container {
-        flex: none; /* Réinitialiser la flexibilité */
-        width: 100%; /* Prendre toute la largeur */
-        height: auto; /* Ajuster la hauteur automatiquement */
-    }
-}
+            .map-container, .list-container {
+                flex: none; /* Réinitialiser la flexibilité */
+                width: 100%; /* Prendre toute la largeur */
+                height: auto; /* Ajuster la hauteur automatiquement */
+            }
+        }
 
     </style>
 <head>
@@ -595,15 +594,14 @@ ${isBest ? '► ' : '  '}${c.nomTournoi}: ${c.classement}e (${c.points} pts)
         <td>${joueur.nom} ${joueur.nom === ChampionLastYear ? '👑' : ''}</td>
         <td>
             <span class="region-color
-                ${joueur.region === 'Bretagne-Normandie' ? 'bretagne-normandie-color' :
-                  joueur.region === 'Nord' ? 'nord-color' :
-                  joueur.region === 'Loire' ? 'loire-color' :
-                  joueur.region === 'Ardenne-Bourgogne' ? 'ardenne-bourgogne-color' :
-                  joueur.region === 'Est' ? 'est-color' :
-                  joueur.region === 'Aquitaine' ? 'aquitaine-color' :
-                  joueur.region === 'Occitanie' ? 'occitanie-color' :
-                  joueur.region === 'Auvergne' ? 'auvergne-color' :
-                  joueur.region === 'Alpes' ? 'alpes-color' : ''}"></span>
+                ${joueur.region === 'Marron' ? 'Marron-color' :
+                  joueur.region === 'Vert' ? 'Vert-color' :
+                  joueur.region === 'Jaune' ? 'Jaune-color' :
+                  joueur.region === 'Violet' ? 'Violet-color' :
+                  joueur.region === 'Cyan' ? 'Cyan-color' :
+                  joueur.region === 'Orange' ? 'Orange-color' :
+                  joueur.region === 'Rouge' ? 'Rouge-color' :
+                  joueur.region === 'Vert Clair' ? 'Vert-Clair-color' : ''}"></span>
             ${joueur.region || 'Non spécifiée'}
         </td>
         <td>${joueur.listeClassements.length}</td>

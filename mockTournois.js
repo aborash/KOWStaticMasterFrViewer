@@ -85,6 +85,57 @@ const tournois = [
         "deuxJours": true
     },
     {
+        "url": "https://www.tabletopturniere.de/fr/t3_tournament.php?tid=38976",
+        "lat": 46.61815,
+        "lon": 5.53925,
+        "nom": "Tournois jurassien",
+        "date":"2025-10-18",
+        "resultats": [
+    {
+        "nom": "Céleste aka \"Jarekson\"",
+        "classement": 1,
+    },
+    {
+        "nom": "Duncan aka \"Dunk\"",
+        "classement": 2,
+    },
+    {
+        "nom": "Jacky aka \"Thalantir\"",
+        "classement": 3,
+    },
+    {
+        "nom": "Joris aka \"Jawjaw\"",
+        "classement": 4,
+    },
+    {
+        "nom": "Olivier aka \"Tenekha\"",
+        "classement": 5,
+    },
+    {
+        "nom": "Rodolphe aka \"LuciusForge\"",
+        "classement": 6,
+    },
+    {
+        "nom": "James aka \"Sousou\"",
+        "classement": 7,
+    },
+    {
+        "nom": "Elias aka \"Morzaad\"",
+        "classement": 8,
+    },
+    {
+        "nom": "Kevin aka \"VargLeRedoutable\"",
+        "classement": 9,
+    },
+    {
+        "nom": "Nicolas aka \"Taybard\"",
+        "classement": 10,
+    }
+]
+,
+        "deuxJours": true
+    },,
+    {
         "url": "https://www.tabletoptournaments.net/t3_tournament.php?tid=39630",
         "lat": 46.61815,
         "lon": 5.53925,

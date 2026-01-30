@@ -4,169 +4,169 @@
 const joueurs = [
     {
         "nom": "Timothée aka \"Knurlnien\"",
-        "region": "Occitanie",
+        "region": "Rouge",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Thibault aka \"Chapelier\"",
-        "region": "Aquitaine",
+        "region": "Orange",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Vincent aka \"Beerserkr\"",
-        "region": "Aquitaine",
+        "region": "Orange",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Thierry aka \"El_chatardo\"",
-        "region": "Occitanie",
+        "region": "Rouge",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Adrien aka \"Pantoufle\"",
-        "region": "Aquitaine",
+        "region": "Orange",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Laurent aka \"BOSS\"",
-        "region": "Occitanie",
+        "region": "Rouge",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Rachid aka \"Le_Cul_de_Jatte\"",
-        "region": "Aquitaine",
+        "region": "Orange",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Olivier aka \"biak40\"",
-        "region": "Aquitaine",
+        "region": "Orange",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Michel aka \"Kutchuc\"",
-        "region": "Occitanie",
+        "region": "Rouge",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Stéphane aka \"EDAEPHNOS\"",
-        "region": "Occitanie",
+        "region": "Rouge",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Mathieu aka \"krypt\"",
-        "region": "Aquitaine",
+        "region": "Orange",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Benjamin aka \"Nabot\"",
-        "region": "Occitanie",
+        "region": "Rouge",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Luc aka \"Astrabell\"",
-        "region": "Occitanie",
+        "region": "Rouge",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Dominique aka \"MaSeDrIm\"",
-        "region": "Occitanie",
+        "region": "Rouge",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Nicolas aka \"Nayko_le_Rat\"",
-        "region": "Est",
+        "region": "Cyan",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Paco aka \"Iblis\"",
-        "region": "Nord",
+        "region": "Vert",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Alban aka \"walach\"",
-        "region": "Nord",
+        "region": "Vert",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Olivier aka \"Orckel\"",
-        "region": "Nord",
+        "region": "Vert",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Vincent aka \"Julo62\"",
-        "region": "Nord",
+        "region": "Vert",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Samuel aka \"expunk\"",
-        "region": "Nord",
+        "region": "Vert",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Bruno aka \"BrG\"",
-        "region": "Est",
+        "region": "Cyan",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Alex aka \"Alexlesec\"",
-        "region": "Nord",
+        "region": "Vert",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Jérémie aka \"Kenozan\"",
-        "region": "Nord",
+        "region": "Vert",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Kenzo aka \"KENZO\"",
-        "region": "Nord",
+        "region": "Vert",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Arthur aka \"Pattopesto\"",
-        "region": "Nord",
+        "region": "Vert",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Jean aka \"Twerk\"",
-        "region": "Nord",
+        "region": "Vert",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Duncan aka \"Dunk\"",
-        "region": "Est",
+        "region": "Cyan",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Olivier aka \"Tenekha\"",
-        "region": "",
+        "region": "Cyan",
         "listeClassements": [],
         "pointTotal": 0
     },
@@ -214,7 +214,7 @@ const joueurs = [
     },
     {
         "nom": "Jacky aka \"Thalantir\"",
-        "region": "",
+        "region": "Cyan",
         "listeClassements": [],
         "pointTotal": 0
     },
@@ -226,73 +226,73 @@ const joueurs = [
     },
     {
         "nom": "Damien aka \"Dablama\"",
-        "region": "Auvergne",
+        "region": "Jaune",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Céleste aka \"Jarekson\"",
-        "region": "Alpes",
+        "region": "Vert Clair",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Liam aka \"Siilence\"",
-        "region": "Alpes",
+        "region": "Vert Clair",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Patrick aka \"AEnoriel\"",
-        "region": "Alpes",
+        "region": "Vert Clair",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Xavier aka \"Dalendur\"",
-        "region": "Alpes",
+        "region": "Vert Clair",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Quentin aka \"kentx\"",
-        "region": "Bretagne-Normandie",
+        "region": "Marron",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Julien aka \"MyNicknameIsBetterThanYours\"",
-        "region": "Loire",
+        "region": "Jaune",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Clément aka \"Leff\"",
-        "region": "Bretagne-Normandie",
+        "region": "Marron",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Kenny aka \"Kintz\"",
-        "region": "Ardenne-Bourgogne",
+        "region": "Violet",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Arthur aka \"AVL\"",
-        "region": "Loire",
+        "region": "Jaune",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Kevin aka \"Ketep\"",
-        "region": "Auvergne",
+        "region": "Jaune",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Rodolphe aka \"LuciusForge\"",
-        "region": "Ardenne-Bourgogne",
+        "region": "Violet",
         "listeClassements": [],
         "pointTotal": 0
     },
@@ -304,7 +304,7 @@ const joueurs = [
     },
     {
         "nom": "Julien aka \"Poliorcetic\"",
-        "region": "Bretagne-Normandie",
+        "region": "Marron",
         "listeClassements": [],
         "pointTotal": 0
     },
@@ -316,31 +316,31 @@ const joueurs = [
     },
     {
         "nom": "Joris aka \"Jawjaw\"",
-        "region": "Ardenne-Bourgogne",
+        "region": "Violet",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Morphée aka \"morphee_joker\"",
-        "region": "Ardenne-Bourgogne",
+        "region": "Violet",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Kevin aka \"VargLeRedoutable\"",
-        "region": "Est",
+        "region": "Cyan",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Maxime aka \"Maximork\"",
-        "region": "Ardenne-Bourgogne",
+        "region": "Violet",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "James aka \"Sousou\"",
-        "region": "Ardenne-Bourgogne",
+        "region": "Violet",
         "listeClassements": [],
         "pointTotal": 0
     },
@@ -352,7 +352,7 @@ const joueurs = [
     },
     {
         "nom": "Eric aka \"eric\"",
-        "region": "Aquitaine",
+        "region": "Orange",
         "listeClassements": [],
         "pointTotal": 0
     },
@@ -370,85 +370,85 @@ const joueurs = [
     },
     {
         "nom": "Sylvain aka \"Helvain\"",
-        "region": "Occitanie",
+        "region": "Rouge",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Argozs aka \"Argozs_Nai_Quasser\"",
-        "region": "Ardenne-Bourgogne",
+        "region": "Violet",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Philippe aka \"kraspeck\"",
-        "region": "Ardenne-Bourgogne",
+        "region": "Violet",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Sylvain aka \"magoran\"",
-        "region": "Ardenne-Bourgogne",
+        "region": "Violet",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Denis aka \"Arkhaon\"",
-        "region": "Ardenne-Bourgogne",
+        "region": "Violet",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Baptiste aka \"Thorgrimleouf\"",
-        "region": "Alpes",
+        "region": "Vert Clair",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Lancelot aka \"Lancelot71\"",
-        "region": "Ardenne-Bourgogne",
+        "region": "Violet",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Éric aka \"erwik\"",
-        "region": "Ardenne-Bourgogne",
+        "region": "Violet",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Protéus aka \"Proteus\"",
-        "region": "Ardenne-Bourgogne",
+        "region": "Violet",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Pierre-Antoine aka \"CH1PS\"",
-        "region": "Loire",
+        "region": "Jaune",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Mathieu aka \"Beji\"",
-        "region": "Aquitaine",
+        "region": "Orange",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Eric aka \"Garzak\"",
-        "region": "Aquitaine",
+        "region": "Orange",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Emmanuel aka \"Emariv\"",
-        "region": "Aquitaine",
+        "region": "Orange",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Sylvain aka \"Catchan\"",
-        "region": "Est",
+        "region": "Cyan",
         "listeClassements": [],
         "pointTotal": 0
     },
@@ -466,7 +466,7 @@ const joueurs = [
     },
     {
         "nom": "Kevin aka \"firegantelet\"",
-        "region": "Loire",
+        "region": "Jaune",
         "listeClassements": [],
         "pointTotal": 0
     },
@@ -478,25 +478,25 @@ const joueurs = [
     },
     {
         "nom": "Bruno aka \"Leloup\"",
-        "region": "Occitanie",
+        "region": "Rouge",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Nataël aka \"Rako\"",
-        "region": "Alpes",
+        "region": "Vert Clair",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Pierre aka \"PinusDePrusse\"",
-        "region": "Alpes",
+        "region": "Vert Clair",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Elias aka \"Morzaad\"",
-        "region": "Alpes",
+        "region": "Vert Clair",
         "listeClassements": [],
         "pointTotal": 0
     },
@@ -532,43 +532,49 @@ const joueurs = [
     },
     {
         "nom": "Olivier aka \"ollv\"",
-        "region": "Nord",
+        "region": "Vert",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Eric aka \"Crom-_-\"",
-        "region": "Nord",
+        "region": "Vert",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Pierre aka \"meg\"",
-        "region": "Nord",
+        "region": "Vert",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Christophe aka \"galahad59\"",
-        "region": "Nord",
+        "region": "Vert",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Vincent aka \"vince3310\"",
-        "region": "Occitanie",
+        "region": "Rouge",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Sebastien aka \"Ysardul\"",
-        "region": "Occitanie",
+        "region": "Rouge",
         "listeClassements": [],
         "pointTotal": 0
     },
     {
         "nom": "Guilhem aka \"Lauzerg974\"",
-        "region": "Occitanie",
+        "region": "Rouge",
+        "listeClassements": [],
+        "pointTotal": 0
+    },
+    {
+        "nom": "Nicolas aka \"Taybard\"",
+        "region": "Rouge",
         "listeClassements": [],
         "pointTotal": 0
     }
