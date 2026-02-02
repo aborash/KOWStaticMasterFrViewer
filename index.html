@@ -323,7 +323,7 @@
             </div>
           
         </div>
-
+<script src="departements.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
         function toggleMap() {
@@ -346,6 +346,55 @@ toggleMap()
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
+
+ function getDeptColor(code) {
+        // Liste des codes
+        const Marron = ["75", "77", "78", "91", "92", "93", "94", "95","14", "27", "50", "61", "76","22", "29", "35", "56","44", "49", "53", "72", "85"];
+        const Vert = ['59', '62', '80','60','02'];
+        const Jaune = ["18", "28", "36", "37", "41", "45",'23','87','19','03','63','15'];
+        const Violet = ['08','51','10','52','89','59','21','71','58']
+        const Cyan = ['55', '54', '57','67','88','68','70','25','39','90'];
+        const Orange = ["16", "17", "23", "24", "33", "40", "47", "64", "79", "86", "87"];
+        const Rouge = ["09", "11", "12", "30", "31", "32", "34", "46", "48", "65", "66", "81", "82"];
+        const VertClair = ["04", "05", "06", "13", "83", "84","01", "07", "15", "26", "38", "42", "43", "63", "69", "73", "74","2B","2A"];
+
+        // Vérifier si le code est dans la liste
+        if (Marron.includes(code)) {
+            return "#311415"; 
+        }else if (Vert.includes(code)) {
+            return "#32832E";
+        }else if (Jaune.includes(code)) {
+            return "#D8AE04";
+        }else if (Violet.includes(code)) {
+            return "#5D2F71";
+        }else if (Cyan.includes(code)) {
+            return "#45B6CC";
+        }else if (Orange.includes(code)) {
+            return "#E95C02";
+        }else if (Rouge.includes(code)) {
+            return "#dd0000";
+        }else if (VertClair.includes(code)) {
+            return "#15DD6A";
+        }
+        
+
+        return "#32832E"; // Couleur par défaut
+    }
+    function styleDept(feature) {
+        const code = feature.properties.code || feature.properties.code_dep;
+
+        return {
+            color: "#555",
+            weight: 0,
+            fillColor: getDeptColor(code),
+            fillOpacity: 0.6
+        };
+    }
+
+  L.geoJSON(departementsGeoJSON, {
+        style: styleDept,
+       
+    }).addTo(map);
 
         // Constante pour le nombre maximum de tournois à prendre en compte
         const MaxTournamentCount = 4;
