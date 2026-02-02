@@ -323,9 +323,12 @@
             </div>
           
         </div>
-<script src="departements.js"></script>
+        
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
+    const PLACE_DISPONIBLE = 15; // Nombre de places disponibles pour la qualification
+    const MaxTournamentCount = 4;   // Constante pour le nombre maximum de tournois à prendre en compte
+
         function toggleMap() {
     const mapElement = document.getElementById('map');
     const button = document.querySelector('.map-toggle');
@@ -341,12 +344,26 @@
 }
 toggleMap()
         // Initialisation de la carte
+
         const map = L.map('map').setView([46.603354, 1.888334], 6);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
+        // Ajout de l'image en superposition transparente sur la carte
+        // Définir les coordonnées géographiques des coins de l'image (bounds)
+        // [Sud-Ouest, Nord-Est] : [[latSW, lonSW], [latNE, lonNE]]
+        // Ces valeurs sont à ajuster pour correspondre à la France métropolitaine
+        var imageUrl = 'mapFrance.png';
+        // Ajustement précis des bounds pour mapFrance.png
+        // Sud-Ouest (latitude, longitude) et Nord-Est (latitude, longitude)
+        // Ces valeurs sont affinées pour coller au contour de la France
+        var imageBounds = [[41.25, -5.0], [51.3, 9.0]];
+        // Pour agrandir l'image, on étend un peu les bounds (Sud plus bas, Nord plus haut, Ouest plus à gauche, Est plus à droite)
+        var enlargedBounds = [[40.8, -6.0], [51.7, 10.0]];
+        L.imageOverlay(imageUrl, enlargedBounds, {opacity: 0.45, interactive: false}).addTo(map);
 
+/*
  function getDeptColor(code) {
         // Liste des codes
         const Marron = ["75", "77", "78", "91", "92", "93", "94", "95","14", "27", "50", "61", "76","22", "29", "35", "56","44", "49", "53", "72", "85"];
@@ -394,10 +411,8 @@ toggleMap()
   L.geoJSON(departementsGeoJSON, {
         style: styleDept,
        
-    }).addTo(map);
+    }).addTo(map);*/
 
-        // Constante pour le nombre maximum de tournois à prendre en compte
-        const MaxTournamentCount = 4;
 
         // Fonction de calcul des points
         function calculPoint(deuxJours, classement, nombreTotal) {
@@ -432,9 +447,10 @@ toggleMap()
 
         // Création de la classe Joueur
         class Joueur {
-            constructor(nom, region) {
+            constructor(nom, region, DateNaissance) {
                 this.nom = nom;
                 this.region = region;
+                this.DateNaissance = DateNaissance;
                 this.listeClassements = [];
                 this.pointTotal = 0;
             }
@@ -502,10 +518,10 @@ toggleMap()
                     
                     // Si on vient d'ajouter un deuxième tournoi ou plus à ce groupe
                     if (acc[key].tournois.length > 1) {
-                        console.log('Tournois regroupés aux coordonnées', latRound, lonRound, ':');
+                     //   console.log('Tournois regroupés aux coordonnées', latRound, lonRound, ':');
                         acc[key].tournois.forEach(t => console.log('-', t.nom));
                     }else{
-                        console.log('Tournois tout seule', latRound, lonRound, ':');
+                      //  console.log('Tournois tout seule', latRound, lonRound, ':');
                     }
                     return acc;
                 }, {});
@@ -538,10 +554,10 @@ toggleMap()
                     console.log('mockPlayer est défini avec', mockPlayer.length, 'joueurs.');
                     // Initialiser les joueurs
                     mockPlayer.forEach(joueur => {
-                        allPlayers.set(joueur.nom, new Joueur(joueur.nom, joueur.region));
+                        allPlayers.set(joueur.nom, new Joueur(joueur.nom, joueur.region,joueur.DateNaissance));
                     });
 
-                    console.log("test");
+                
 
                     // Parcourir tous les tournois pour ajouter les classements
                     tournois.forEach(tournoi => {
@@ -566,9 +582,17 @@ toggleMap()
                             // D'abord comparer les points totaux
                             const pointsDiff = b.pointTotal - a.pointTotal;
                             if (pointsDiff !== 0) return pointsDiff;
-                            
-                            // En cas d'égalité, comparer le nombre de tounois joués
-                            return  a.listeClassements.length-b.listeClassements.length;
+
+                            // En cas d'égalité, comparer le nombre de tournois joués
+                            const tournoisDiff = a.listeClassements.length - b.listeClassements.length;
+                            if (tournoisDiff !== 0) return tournoisDiff;
+
+                            // En cas d'égalité, comparer l'âge (le plus jeune en premier)
+                            // DateNaissance peut être string ou number, on convertit en date
+                            const dateA = new Date(a.DateNaissance).getTime();
+                            const dateB = new Date(b.DateNaissance).getTime();
+                            // Plus la date est grande, plus le joueur est jeune
+                            return dateB - dateA;
                         });
 
                     // Placer le ChampionLastYear en tête de la liste triée
@@ -601,7 +625,7 @@ toggleMap()
                     // Qualifier les 14 premiers non déjà qualifiés
                     let qualifiedCount = 0;
                     filteredPlayers.forEach((joueur, index) => {
-                        if (qualifiedCount < 14 && !qualifiedPlayers.has(joueur.nom)) {
+                        if (qualifiedCount < PLACE_DISPONIBLE && !qualifiedPlayers.has(joueur.nom)) {
                             qualifiedPlayers.add(joueur.nom);
                             qualifiedCount++;
                         }
@@ -659,6 +683,12 @@ ${isBest ? '► ' : '  '}${c.nomTournoi}: ${c.classement}e (${c.points} pts)
             <div class="tooltip">${tooltipContent}</div>
         </td>
     `;
+    // Insérer une ligne de séparation en gras après la 15ème ligne (après le 15ème joueur)
+    if (position === (PLACE_DISPONIBLE+2)) {
+        const separator = document.createElement('tr');
+        separator.innerHTML = `<td colspan="5" style="font-weight:bold; text-align:center; background:#222; color:#fff;"></td>`;
+        tbody.appendChild(separator);
+    }
     tbody.appendChild(tr);
 });
                 } else {

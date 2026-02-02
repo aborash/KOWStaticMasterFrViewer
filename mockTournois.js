@@ -58,8 +58,40 @@ const tournois = [
         "date":"2026-01-31",
         "nom": "Les mée'rcenaires VII",
         "resultats": [
-  
-        ],
+    {
+        "nom": "Quentin aka \"kentx\"",
+        "classement": 1
+    },
+    {
+        "nom": "Arthur aka \"AVL\"",
+        "classement": 2
+    },
+    {
+        "nom": "Pierre-Antoine aka \"CH1PS\"",
+        "classement": 3
+    },
+    {
+        "nom": "Thibault aka \"Chapelier\"",
+        "classement": 4
+    },
+    {
+        "nom": "Arnold aka \"Reldan\"",
+        "classement": 5
+    },
+    {
+        "nom": "Nicolas aka \"Nicos\"",
+        "classement": 6
+    },
+    {
+        "nom": "Eric aka \"Fusil1-1\"",
+        "classement": 7
+    },
+    {
+        "nom": "Tanguy aka \"tde35\"",
+        "classement": 8
+    }
+]
+,
         "deuxJours": true
     },
     {
@@ -69,9 +101,40 @@ const tournois = [
         "date":"2026-01-31",
         "nom": "Launa gamer 2026",
         "resultats": [
-  
+  {
+        "nom": "Nicolas aka \"Nayko_le_Rat\"",
+        "classement": 1
+    },
+    {
+        "nom":"Kevin aka \"Ketep\"",
+        "classement": 2
+    },
+    {
+        "nom": "Thierry aka \"El_chatardo\"",
+        "classement": 3
+    },
+    {
+        "nom": "Michel aka \"Kutchuc\"",
+        "classement": 4
+    },
+    {
+        "nom": "Sylvain aka \"Helvain\"",
+        "classement": 5
+    },
+    {
+        "nom": "Dominique aka \"MaSeDrIm\"",
+        "classement": 6
+    },
+    {
+        "nom": "Guilhem aka \"Lauzerg974\"",
+        "classement": 7
+    },
+    {
+        "nom":"Benjamin aka \"Nabot\"" ,
+        "classement": 8
+    },
         ],
-        "deuxJours": false
+        "deuxJours": true
     },
     {
         "url": "",
