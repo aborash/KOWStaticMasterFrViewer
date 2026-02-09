@@ -589,8 +589,15 @@ toggleMap()
 
                             // En cas d'égalité, comparer l'âge (le plus jeune en premier)
                             // DateNaissance peut être string ou number, on convertit en date
-                            const dateA = new Date(a.DateNaissance).getTime();
-                            const dateB = new Date(b.DateNaissance).getTime();
+                            function parseDateFR(dateStr) {
+                                if (typeof dateStr === 'string' && dateStr.match(/^\d{2}\/\d{2}\/\d{4}$/)) {
+                                    const [jour, mois, annee] = dateStr.split('/');
+                                    return new Date(`${annee}-${mois}-${jour}`).getTime();
+                                }
+                                return new Date(dateStr).getTime();
+                            }
+                            const dateA = parseDateFR(a.DateNaissance);
+                            const dateB = parseDateFR(b.DateNaissance);
                             // Plus la date est grande, plus le joueur est jeune
                             return dateB - dateA;
                         });

@@ -52,49 +52,6 @@ const tournois = [
         "deuxJours": false
     },
     {
-        "url": "https://www.tabletoptournaments.net/fr/t3_tournament.php?tid=36410",
-        "lat": 47.7167,
-        "lon": -1.3833,
-        "date":"2026-01-31",
-        "nom": "Les mée'rcenaires VII",
-        "resultats": [
-    {
-        "nom": "Quentin aka \"kentx\"",
-        "classement": 1
-    },
-    {
-        "nom": "Arthur aka \"AVL\"",
-        "classement": 2
-    },
-    {
-        "nom": "Pierre-Antoine aka \"CH1PS\"",
-        "classement": 3
-    },
-    {
-        "nom": "Thibault aka \"Chapelier\"",
-        "classement": 4
-    },
-    {
-        "nom": "Arnold aka \"Reldan\"",
-        "classement": 5
-    },
-    {
-        "nom": "Nicolas aka \"Nicos\"",
-        "classement": 6
-    },
-    {
-        "nom": "Eric aka \"Fusil1-1\"",
-        "classement": 7
-    },
-    {
-        "nom": "Tanguy aka \"tde35\"",
-        "classement": 8
-    }
-]
-,
-        "deuxJours": true
-    },
-    {
         "url": "",
         "lat":  43.674751,
         "lon": 1.458447,
@@ -143,7 +100,47 @@ const tournois = [
         "date":"2026-02-07",
         "nom": "King in the North VII",
         "resultats": [
-     
+            
+            {
+                "nom": "Alban aka \"walach\"",
+                "classement": 1
+            },
+            {
+                "nom": "Paco aka \"Iblis\"",
+                "classement": 2
+            },
+            {
+                "nom": "Alex aka \"Alexlesec\"",
+                "classement": 3
+            },
+            {
+                "nom": "Jérémie aka \"Kenozan\"",
+                "classement": 4
+            },
+            {
+                "nom": "Maxime aka \"Fao\"",
+                "classement": 5
+            },
+            {
+                "nom": "Vincent aka \"Julo62\"",
+                "classement": 6
+            },
+            {
+                "nom": "Jean aka \"Twerk\"",
+                "classement": 7
+            },
+            {
+                "nom": "Olivier aka \"Orckel\"",
+                "classement": 8
+            },
+            {
+                "nom": "Samuel aka \"expunk\"",
+                "classement": 9
+            },
+            {
+                "nom": "Kenzo aka \"KENZO\"",
+                "classement": 10
+            },
         ],
         "deuxJours": true
     },
@@ -197,16 +194,49 @@ const tournois = [
 ]
 ,
         "deuxJours": true
-    },,
+    },
     {
-        "url": "https://www.tabletoptournaments.net/t3_tournament.php?tid=39630",
+        "url": "https://www.tabletopturniere.de/fr/t3_tournament.php?tid=39630",
         "lat": 46.61815,
         "lon": 5.53925,
-        "nom": "Tournois jurassien 2",
+        "nom": "Tournois jurassien 1.5",
         "date":"2026-02-07",
         "resultats": [
-        
-        ],
+            {
+                "nom": "Maxime aka \"Maximork\"",
+                "classement": 1
+            },
+    {
+        "nom": "Rodolphe aka \"LuciusForge\"",
+        "classement": 2,
+    },
+    {
+                "nom": "Kenny aka \"Kintz\"",
+                "classement": 3
+    },
+    {
+                "nom": "Julien aka \"MyNicknameIsBetterThanYours\"",
+                "classement": 4
+            },
+
+    {
+        "nom": "Joris aka \"Jawjaw\"",
+        "classement": 5,
+    },
+    {
+        "nom": "James aka \"Sousou\"",
+        "classement": 6,
+    },
+    {
+        "nom": "albin aka \"Lyhnnae\"",
+        "classement": 7,
+    },
+    {
+        "nom": "Kevin aka \"VargLeRedoutable\"",
+        "classement": 8,
+    }
+]
+,
         "deuxJours": true
     },
     {

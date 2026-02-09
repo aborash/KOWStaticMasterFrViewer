@@ -111,35 +111,35 @@ const joueurs = [
         "region": "Vert",
         "listeClassements": [],
         "pointTotal": 0,
-        "DateNaissance": "01/01/1900"
+        "DateNaissance": "01/01/1983"
     },
     {
         "nom": "Alban aka \"walach\"",
         "region": "Vert",
         "listeClassements": [],
         "pointTotal": 0,
-        "DateNaissance": "01/01/1900"
+        "DateNaissance": "20/12/1987"
     },
     {
         "nom": "Olivier aka \"Orckel\"",
         "region": "Vert",
         "listeClassements": [],
         "pointTotal": 0,
-        "DateNaissance": "01/01/1900"
+        "DateNaissance": "01/01/1972"
     },
     {
         "nom": "Vincent aka \"Julo62\"",
         "region": "Vert",
         "listeClassements": [],
         "pointTotal": 0,
-        "DateNaissance": "01/01/1900"
+        "DateNaissance": "01/01/1979"
     },
     {
         "nom": "Samuel aka \"expunk\"",
         "region": "Vert",
         "listeClassements": [],
         "pointTotal": 0,
-        "DateNaissance": "01/01/1900"
+        "DateNaissance": "01/01/1980"
     },
     {
         "nom": "Bruno aka \"BrG\"",
@@ -153,21 +153,21 @@ const joueurs = [
         "region": "Vert",
         "listeClassements": [],
         "pointTotal": 0,
-        "DateNaissance": "01/01/1900"
+        "DateNaissance": "01/01/1982"
     },
     {
         "nom": "Jérémie aka \"Kenozan\"",
-        "region": "Vert",
+        "region": "Marron",
         "listeClassements": [],
         "pointTotal": 0,
-        "DateNaissance": "01/01/1900"
+        "DateNaissance": "01/01/1987"
     },
     {
         "nom": "Kenzo aka \"KENZO\"",
         "region": "Vert",
         "listeClassements": [],
         "pointTotal": 0,
-        "DateNaissance": "01/01/1900"
+        "DateNaissance": "01/01/2016"
     },
     {
         "nom": "Arthur aka \"Pattopesto\"",
@@ -181,7 +181,7 @@ const joueurs = [
         "region": "Vert",
         "listeClassements": [],
         "pointTotal": 0,
-        "DateNaissance": "01/01/1900"
+        "DateNaissance": "01/01/1992"
     },
     {
         "nom": "Duncan aka \"Dunk\"",
@@ -346,7 +346,7 @@ const joueurs = [
     },
     {
         "nom": "Maxime aka \"Fao\"",
-        "region": "",
+        "region": "Vert",
         "listeClassements": [],
         "pointTotal": 0,
         "DateNaissance": "01/01/1900"
@@ -672,8 +672,15 @@ const joueurs = [
         "listeClassements": [],
         "pointTotal": 0,
         "DateNaissance": "01/01/1900"
-    }
-
+    },
+    {
+        "nom": "albin aka \"Lyhnnae\"",
+        "classement": 7,
+        "region": "Jaune",
+        "listeClassements": [],
+        "pointTotal": 0,
+        "DateNaissance": "01/01/1900"
+    },
 	
 
 ];
